@@ -54,8 +54,6 @@
             color: var(--black);
         }
 
-        /* Scroll */
-
         ::-webkit-scrollbar {
             width: 10px;
         }
@@ -69,8 +67,6 @@
             background: #f1f1f1;
         }
 
-        /* Header Glass */
-
         .glass {
             background: rgba(255, 255, 255, 0.72);
             backdrop-filter: blur(18px);
@@ -78,23 +74,20 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
-        /* Hero */
-
         .hero-bg {
             background:
                 radial-gradient(circle at top left, rgba(255, 211, 24, 0.35), transparent 25%),
                 radial-gradient(circle at bottom right, rgba(228, 31, 38, 0.2), transparent 25%),
                 linear-gradient(135deg, #fff8f3 0%, #ffffff 100%);
-                
         }
-.hero-video{
-    width: 420px;
-    max-width: 100%;
-    height: auto;
-    object-fit: cover;
-    display: block;
-}
-        /* Floating */
+
+        .hero-video {
+            width: 520px;
+            max-width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+        }
 
         .floating {
             animation: floating 5s ease-in-out infinite;
@@ -112,8 +105,6 @@
             }
         }
 
-        /* Cards */
-
         .premium-card {
             background: white;
             border-radius: 30px;
@@ -125,8 +116,6 @@
             transform: translateY(-10px);
             box-shadow: 0 20px 50px rgba(228, 31, 38, 0.15);
         }
-
-        /* Buttons */
 
         .btn-premium {
             position: relative;
@@ -149,8 +138,6 @@
             left: 120%;
         }
 
-        /* Titles */
-
         .section-title {
             position: relative;
             display: inline-block;
@@ -166,8 +153,6 @@
             background: var(--yellow);
             border-radius: 30px;
         }
-
-        /* Gallery */
 
         .gallery-item {
             overflow: hidden;
@@ -197,8 +182,6 @@
             opacity: 1;
         }
 
-        /* Swiper */
-
         .swiper {
             padding-bottom: 60px !important;
         }
@@ -207,13 +190,15 @@
             background: var(--red) !important;
         }
 
-        /* Mobile */
-
         @media(max-width:768px) {
 
             .hero-title {
                 font-size: 2.8rem !important;
                 line-height: 1.1;
+            }
+
+            .hero-video {
+                width: 100%;
             }
 
         }
@@ -230,11 +215,9 @@
 
             <div class="glass mt-5 rounded-full px-6 py-4 flex items-center justify-between">
 
-                <!-- Logo -->
-
                 <div class="flex items-center gap-4">
 
-                    <img src="images/PAPELARIATATINA.png" 
+                    <img src="images/PAPELARIATATINA.png"
                          class="w-16 h-16 rounded-full object-cover shadow-xl">
 
                     <div>
@@ -246,8 +229,6 @@
                     </div>
 
                 </div>
-
-                <!-- Menu -->
 
                 <nav class="hidden lg:flex items-center gap-10 font-semibold text-[#111111]">
 
@@ -278,9 +259,6 @@
 
                 </nav>
 
-
-                <!-- Mobile -->
-
                 <button id="menuBtn"
                         class="lg:hidden text-3xl text-[#111111]">
 
@@ -289,8 +267,6 @@
                 </button>
 
             </div>
-
-            <!-- Mobile Menu -->
 
             <div id="mobileMenu"
                  class="hidden glass mt-4 rounded-3xl p-6">
@@ -316,15 +292,13 @@
     <section id="home"
              class="hero-bg min-h-screen flex items-center relative overflow-hidden">
 
-        <!-- Effects -->
-
         <div class="absolute top-0 left-0 w-96 h-96 bg-yellow-300/40 rounded-full blur-3xl"></div>
 
         <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-red-300/30 rounded-full blur-3xl"></div>
 
         <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center pt-40">
 
-            <!-- Left -->
+            <!-- LEFT -->
 
             <div data-aos="fade-right">
 
@@ -352,114 +326,34 @@
 
                         <i class="fab fa-whatsapp"></i>
 
-                        Solicitar Atendimento tttt
+                        Solicitar Atendimento
 
                     </a>
 
                 </div>
 
-            <!-- Right -->
-
-<div class="relative flex justify-center items-center"
-     data-aos="fade-left">
-
-    <div class="bg-white p-4 rounded-[40px] shadow-2xl floating overflow-hidden">
-
-        <video 
-            class="hero-video rounded-[30px]"
-            autoplay
-            muted
-            loop
-            playsinline
-        >
-            <source src="images/papelaria.mp4" type="video/mp4">
-        
-        </video>
-
-    </div>
-
-</div>
-
             </div>
 
-        </div>
+            <!-- RIGHT VIDEO -->
 
-    </section>
+            <div class="relative flex justify-end items-center w-full"
+                 data-aos="fade-left">
 
-    <!-- SOBRE -->
+                <div class="bg-white p-4 rounded-[40px] shadow-2xl floating overflow-hidden">
 
-    <section id="sobre"
-             class="py-28">
+                    <video
+                        class="hero-video rounded-[30px]"
+                        autoplay
+                        muted
+                        loop
+                        playsinline
+                        preload="auto">
 
-        <div class="container mx-auto px-6">
+                        <source src="images/papelaria.mp4" type="video/mp4">
 
-            <div class="text-center mb-20"
-                 data-aos="fade-up">
+                        Seu navegador não suporta vídeo HTML5.
 
-                <h2 class="section-title text-5xl font-extrabold text-[#111111]">
-                    Sobre Nós
-                </h2>
-
-            </div>
-
-            <div class="grid lg:grid-cols-3 gap-8">
-
-                <div class="premium-card p-10"
-                     data-aos="fade-up">
-
-                    <div class="w-20 h-20 rounded-2xl bg-red-100 flex items-center justify-center">
-
-                        <i class="fa-solid fa-star text-4xl text-[#e41f26]"></i>
-
-                    </div>
-
-                    <h3 class="text-2xl font-bold mt-8">
-                        Qualidade Premium
-                    </h3>
-
-                    <p class="mt-5 text-gray-600 leading-relaxed">
-                        Produtos personalizados com acabamento impecável e visual moderno.
-                    </p>
-
-                </div>
-
-                <div class="premium-card p-10"
-                     data-aos="fade-up"
-                     data-aos-delay="200">
-
-                    <div class="w-20 h-20 rounded-2xl bg-yellow-100 flex items-center justify-center">
-
-                        <i class="fa-solid fa-palette text-4xl text-[#111111]"></i>
-
-                    </div>
-
-                    <h3 class="text-2xl font-bold mt-8">
-                        Criatividade
-                    </h3>
-
-                    <p class="mt-5 text-gray-600 leading-relaxed">
-                        Soluções criativas para empresas, escolas, eventos e presentes.
-                    </p>
-
-                </div>
-
-                <div class="premium-card p-10"
-                     data-aos="fade-up"
-                     data-aos-delay="400">
-
-                    <div class="w-20 h-20 rounded-2xl bg-black flex items-center justify-center">
-
-                        <i class="fa-solid fa-headset text-4xl text-yellow-300"></i>
-
-                    </div>
-
-                    <h3 class="text-2xl font-bold mt-8">
-                        Atendimento Humanizado
-                    </h3>
-
-                    <p class="mt-5 text-gray-600 leading-relaxed">
-                        Atendimento rápido, moderno e focado na melhor experiência do cliente.
-                    </p>
+                    </video>
 
                 </div>
 
@@ -468,403 +362,6 @@
         </div>
 
     </section>
-
-    <!-- CATEGORIAS -->
-
-    <section id="categorias"
-             class="py-28 bg-[#111111] text-white">
-
-        <div class="container mx-auto px-6">
-
-            <div class="text-center mb-20">
-
-                <h2 class="section-title text-5xl font-extrabold text-white">
-                    Categorias
-                </h2>
-
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                <div class="premium-card p-10 text-center">
-                    <i class="fa-solid fa-mug-hot text-5xl text-[#e41f26]"></i>
-                    <h3 class="text-2xl font-bold mt-6 text-black">
-                        Canecas
-                    </h3>
-                </div>
-
-                <div class="premium-card p-10 text-center">
-                    <i class="fa-solid fa-shirt text-5xl text-[#e41f26]"></i>
-                    <h3 class="text-2xl font-bold mt-6 text-black">
-                        Camisetas
-                    </h3>
-                </div>
-
-                <div class="premium-card p-10 text-center">
-                    <i class="fa-solid fa-gift text-5xl text-[#e41f26]"></i>
-                    <h3 class="text-2xl font-bold mt-6 text-black">
-                        Brindes
-                    </h3>
-                </div>
-
-                <div class="premium-card p-10 text-center">
-                    <i class="fa-solid fa-bag-shopping text-5xl text-[#e41f26]"></i>
-                    <h3 class="text-2xl font-bold mt-6 text-black">
-                        Mochilas
-                    </h3>
-                </div>
-
-                <div class="premium-card p-10 text-center">
-                    <i class="fa-solid fa-bottle-water text-5xl text-[#e41f26]"></i>
-                    <h3 class="text-2xl font-bold mt-6 text-black">
-                        Garrafas
-                    </h3>
-                </div>
-
-                <div class="premium-card p-10 text-center">
-                    <i class="fa-solid fa-briefcase text-5xl text-[#e41f26]"></i>
-                    <h3 class="text-2xl font-bold mt-6 text-black">
-                        Kits Corporativos
-                    </h3>
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- GALERIA -->
-
-    <section id="galeria"
-             class="py-28">
-
-        <div class="container mx-auto px-6">
-
-            <div class="text-center mb-20">
-
-                <h2 class="section-title text-5xl font-extrabold">
-                    Produtos Personalizados & Criativos
-                </h2>
-
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                <div class="gallery-item">
-               <img src="images/papel1.jpg" 
-                         class="w-full h-[350px] object-cover">
-                </div>
-
-                <div class="gallery-item">
-                    <img src="images/papel2.jpg" 
-                         class="w-full h-[350px] object-cover">
-                </div>
-
-                <div class="gallery-item">
-                    <img src="images/papel3.jpg" 
-                         class="w-full h-[350px] object-cover">
-                </div>
-
-                <div class="gallery-item">
-                   <img src="images/papel4.jpg" 
-                         class="w-full h-[350px] object-cover">
-                </div>
-
-                <div class="gallery-item">
-                   <img src="images/papel5.jpg" 
-                         class="w-full h-[350px] object-cover">
-                </div>
-
-                <div class="gallery-item">
-                  <img src="images/papel6.jpg"
-                         class="w-full h-[350px] object-cover">
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- DEPOIMENTOS -->
-
-    <section class="py-28 bg-[#fff2f2]">
-
-        <div class="container mx-auto px-6">
-
-            <div class="text-center mb-20">
-
-                <h2 class="section-title text-5xl font-extrabold">
-                    Clientes Felizes
-                </h2>
-
-            </div>
-
-            <div class="swiper mySwiper">
-
-                <div class="swiper-wrapper">
-
-                    <div class="swiper-slide">
-
-                        <div class="premium-card p-10 text-center">
-
-                            <p class="italic text-gray-600">
-                                “Atendimento incrível e produtos lindíssimos.”
-                            </p>
-
-                            <h3 class="font-bold mt-6 text-xl">
-                                Mariana Costa
-                            </h3>
-
-                        </div>
-
-                    </div>
-
-                    <div class="swiper-slide">
-
-                        <div class="premium-card p-10 text-center">
-
-                            <p class="italic text-gray-600">
-                                “Visual moderno e acabamento impecável.”
-                            </p>
-
-                            <h3 class="font-bold mt-6 text-xl">
-                                Felipe Andrade
-                            </h3>
-
-                        </div>
-
-                    </div>
-
-                    <div class="swiper-slide">
-
-                        <div class="premium-card p-10 text-center">
-
-                            <p class="italic text-gray-600">
-                                “Minha marca ficou muito mais profissional.”
-                            </p>
-
-                            <h3 class="font-bold mt-6 text-xl">
-                                Camila Souza
-                            </h3>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="swiper-pagination"></div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- CTA -->
-
-    <section class="py-28 bg-[#e41f26] text-white relative overflow-hidden">
-
-        <div class="absolute top-0 right-0 w-96 h-96 bg-yellow-300/30 rounded-full blur-3xl"></div>
-
-        <div class="container mx-auto px-6 text-center relative z-10">
-
-            <h2 class="text-5xl font-extrabold leading-tight">
-                Vamos criar algo incrível juntos?
-            </h2>
-
-            <p class="mt-8 text-lg text-white/80 max-w-2xl mx-auto">
-                Fale agora com a Papelaria Tatiana e solicite um atendimento personalizado.
-            </p>
-
-            <a href="https://wa.me/5531995471178"
-               target="_blank"
-               class="inline-flex items-center gap-4 bg-black hover:bg-yellow-400 hover:text-black text-white px-10 py-5 rounded-full font-bold mt-12 transition-all duration-500 btn-premium">
-
-                <i class="fab fa-whatsapp text-2xl"></i>
-
-                Falar no WhatsApp
-
-            </a>
-
-        </div>
-
-    </section>
-
-    <!-- FOOTER -->
-
-    <footer id="contato"
-            class="bg-black text-white py-16">
-
-        <div class="container mx-auto px-6">
-
-            <div class="grid lg:grid-cols-3 gap-14">
-
-                <!-- Brand -->
-
-                <div>
-
-                    <div class="flex items-center gap-4">
-
-                       <img src="images/PAPELARIATATINA.png" 
-                         class="w-16 h-16 rounded-full object-cover shadow-xl">
-
-                        <div>
-
-                            <h3 class="text-2xl font-bold">
-                                Papelaria Tatiana
-                            </h3>
-
-                            <p class="text-white/70">
-                                Criatividade & Personalização
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <!-- Links -->
-
-                <div>
-
-                    <h3 class="text-2xl font-bold mb-6 text-yellow-300">
-                        Navegação
-                    </h3>
-
-                    <div class="flex flex-col gap-4 text-white/80">
-
-                        <a href="#home">Início</a>
-                        <a href="#sobre">Sobre</a>
-                        <a href="#categorias">Categorias</a>
-                        <a href="#galeria">Galeria</a>
-
-                    </div>
-
-                </div>
-
-                <!-- Contact -->
-
-                <div>
-
-                    <h3 class="text-2xl font-bold mb-6 text-yellow-300">
-                        Contato
-                    </h3>
-
-                    <div class="flex flex-col gap-5">
-
-                        <a href="https://wa.me/553195471178"
-                           target="_blank"
-                           class="flex items-center gap-4 hover:text-yellow-300 transition">
-
-                            <i class="fab fa-whatsapp"></i>
-
-                            WhatsApp
-
-                        </a>
-
-                        <a href="https://www.instagram.com/papelariatatiana/reels/"
-                           target="_blank"
-                           class="flex items-center gap-4 hover:text-yellow-300 transition">
-
-                            <i class="fab fa-instagram"></i>
-
-                            Instagram
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="border-t border-white/10 mt-14 pt-8 text-center text-white/60">
-
-                © 2026 Papelaria Tatiana — Todos os direitos reservados.
-
-            </div>
-
-        </div>
-
-    </footer>
-
-    <!-- Scripts -->
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-    <script>
-
-        // AOS
-
-        AOS.init({
-            duration: 1200,
-            once: true
-        });
-
-        // Mobile Menu
-
-        const menuBtn = document.getElementById('menuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Swiper
-
-        const swiper = new Swiper(".mySwiper", {
-
-            loop: true,
-
-            autoplay: {
-                delay: 3000,
-            },
-
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-
-            spaceBetween: 30,
-
-            breakpoints: {
-
-                0: {
-                    slidesPerView: 1
-                },
-
-                768: {
-                    slidesPerView: 2
-                },
-
-                1200: {
-                    slidesPerView: 3
-                }
-
-            }
-
-        });
-
-        // GSAP Hero
-
-        gsap.from(".hero-title", {
-
-            y: 80,
-            opacity: 0,
-            duration: 1.2,
-            ease: "power4.out"
-
-        });
-
-    </script>
 
 </body>
 
