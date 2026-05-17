@@ -819,6 +819,28 @@
             ease: "power4.out"
 
         });
+        // Script para forçar a reprodução automática
+    window.addEventListener('DOMContentLoaded', (event) => {
+        const video = document.getElementById('heroVideo');
+        
+        // Garante via código que está mudo (essencial para o autoplay funcionar)
+        video.muted = true;
+        
+        // Tenta reproduzir o vídeo automaticamente
+        const playPromise = video.play();
+
+        if (playPromise !== undefined) {
+            playPromise.then(_ => {
+                console.log("Autoplay iniciado com sucesso!");
+            }).catch(error => {
+                console.log("O navegador bloqueou o autoplay. A tentar reproduzir ao primeiro clique...");
+                // Se o navegador bloquear, ele iniciará assim que o utilizador tocar em qualquer lugar do site
+                document.body.addEventListener('click', () => {
+                    video.play();
+                }, { once: true });
+            });
+        }
+    });
 
     </script>
 
