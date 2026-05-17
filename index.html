@@ -333,24 +333,26 @@
                 </div>
             </div>
 
-           <div class="relative flex justify-center items-center w-full lg:justify-end" data-aos="fade-left">
+<div class="relative flex justify-center items-center w-full lg:justify-end" data-aos="fade-left">
 
     <div class="bg-white p-4 rounded-[40px] md:rounded-[60px] lg:rounded-[80px] shadow-2xl floating overflow-hidden w-full max-w-[420px]">
 
         <video 
             id="heroVideo"
             class="w-full h-auto aspect-[4/5] object-cover rounded-[24px] md:rounded-[44px] lg:rounded-[64px]"
-            autoplay 
-            muted 
-            loop 
+            autoplay
+            muted
+            loop
             playsinline
+            webkit-playsinline
             preload="auto"
         >
-            <source src="papelaria.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-            <source src="papelaria.mp4" type="video/mp4">
+            <source src="./papelaria.mp4" type="video/mp4">
         </video>
 
     </div>
+
+</div>
 
 </div>
 
@@ -819,29 +821,40 @@
             ease: "power4.out"
 
         });
-        // Script para forçar a reprodução automática
-    window.addEventListener('DOMContentLoaded', (event) => {
-        const video = document.getElementById('heroVideo');
         
-        // Garante via código que está mudo (essencial para o autoplay funcionar)
-        video.muted = true;
-        
-        // Tenta reproduzir o vídeo automaticamente
-        const playPromise = video.play();
+const swiper = new Swiper(".mySwiper", {
 
-        if (playPromise !== undefined) {
-            playPromise.then(_ => {
-                console.log("Autoplay iniciado com sucesso!");
-            }).catch(error => {
-                console.log("O navegador bloqueou o autoplay. A tentar reproduzir ao primeiro clique...");
-                // Se o navegador bloquear, ele iniciará assim que o utilizador tocar em qualquer lugar do site
-                document.body.addEventListener('click', () => {
-                    video.play();
-                }, { once: true });
-            });
+    loop: true,
+
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+    },
+
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+
+    spaceBetween: 30,
+
+    breakpoints: {
+
+        0: {
+            slidesPerView: 1
+        },
+
+        768: {
+            slidesPerView: 2
+        },
+
+        1200: {
+            slidesPerView: 3
         }
-    });
 
+    }
+
+});
     </script>
 
 </body>
