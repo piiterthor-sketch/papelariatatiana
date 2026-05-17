@@ -333,28 +333,27 @@
                 </div>
             </div>
 
-<div class="relative flex justify-center items-center w-full lg:justify-end" data-aos="fade-left">
+            <div class="relative flex justify-center items-center w-full lg:justify-end" data-aos="fade-left">
 
-    <div class="bg-white p-4 rounded-[40px] md:rounded-[60px] lg:rounded-[80px] shadow-2xl floating overflow-hidden w-full max-w-[420px]">
+                <div class="bg-white p-4 rounded-[40px] md:rounded-[60px] lg:rounded-[80px] shadow-2xl floating overflow-hidden w-full max-w-[420px]">
 
-        <video 
-            id="heroVideo"
-            class="w-full h-auto aspect-[4/5] object-cover rounded-[24px] md:rounded-[44px] lg:rounded-[64px]"
-            autoplay
-            muted
-            loop
-            playsinline
-            webkit-playsinline
-            preload="auto"
-        >
-            <source src="./papelaria.mp4" type="video/mp4">
-        </video>
+                    <video 
+                        id="heroVideo"
+                        class="w-full h-auto aspect-[4/5] object-cover rounded-[24px] md:rounded-[44px] lg:rounded-[64px]"
+                        autoplay
+                        muted
+                        loop
+                        playsinline
+                        webkit-playsinline
+                        preload="auto">
+                        <source src="images/papelaria.mp4" type="video/mp4">
+                    </video>
 
-    </div>
-
-</div>
+                </div>
 
             </div>
+
+        </div>
 
     </section>
 
@@ -747,22 +746,17 @@
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <script>
-
         // AOS
-
         AOS.init({
             duration: 1200,
             once: true
         });
 
         // Mobile Menu
-
         const menuBtn = document.getElementById('menuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
 
@@ -771,86 +765,32 @@
         });
 
         // Swiper
-
         const swiper = new Swiper(".mySwiper", {
-
             loop: true,
-
             autoplay: {
                 delay: 3000,
+                disableOnInteraction: false,
             },
-
             pagination: {
-                node: ".swiper-pagination",
+                el: ".swiper-pagination",
                 clickable: true,
             },
-
             spaceBetween: 30,
-
             breakpoints: {
-
-                0: {
-                    slidesPerView: 1
-                },
-
-                768: {
-                    slidesPerView: 2
-                },
-
-                1200: {
-                    slidesPerView: 3
-                }
-
+                0: { slidesPerView: 1 },
+                768: { slidesPerView: 2 },
+                1200: { slidesPerView: 3 }
             }
-
         });
 
         // GSAP Hero
-
         gsap.from(".hero-title", {
-
             y: 80,
             opacity: 0,
             duration: 1.2,
             ease: "power4.out"
-
         });
-        
-const swiper = new Swiper(".mySwiper", {
-
-    loop: true,
-
-    autoplay: {
-        delay: 3000,
-        disableOnInteraction: false,
-    },
-
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-    },
-
-    spaceBetween: 30,
-
-    breakpoints: {
-
-        0: {
-            slidesPerView: 1
-        },
-
-        768: {
-            slidesPerView: 2
-        },
-
-        1200: {
-            slidesPerView: 3
-        }
-
-    }
-
-});
     </script>
 
 </body>
-
 </html>
