@@ -1,3 +1,111 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Resgatar oferta
+preciso tirar esta pagina do ar sem apagar o html como fazer.
+
+Você pode tirar a página do ar sem apagar o HTML de algumas formas simples e profissionais:
+
+Opção 1 — Página de Manutenção (mais recomendada)
+Você mantém o HTML salvo e exibe apenas uma tela de manutenção.
+
+Substitua o conteúdo do <body> por isso:
+
+<body style="margin:0;display:flex;align-items:center;justify-content:center;height:100vh;background:#0f172a;color:white;font-family:Arial,sans-serif;text-align:center;">
+
+    <div>
+        <h1 style="font-size:48px;margin-bottom:10px;">
+            Site em Manutenção
+        </h1>
+
+        <p style="font-size:20px;color:#cbd5e1;">
+            Estamos realizando melhorias para oferecer uma experiência melhor.
+        </p>
+
+        <p style="font-size:16px;color:#94a3b8;margin-top:20px;">
+            Voltaremos em breve.
+        </p>
+    </div>
+
+</body>
+Opção 2 — Redirecionar para manutenção
+Crie um arquivo chamado:
+
+manutencao.html
+Depois coloque este código no início da página principal:
+
+<script>
+window.location.href = "manutencao.html";
+</script>
+Assim o site “sai do ar”, mas todo seu HTML continua intacto.
+
+Opção 3 — Bloquear acesso pelo servidor (.htaccess)
+Se sua hospedagem usa Apache, crie um arquivo:
+
+.htaccess
+Com este conteúdo:
+
+RewriteEngine On
+RewriteCond %{REMOTE_ADDR} !^SEU_IP$
+RewriteRule ^(.*)$ /manutencao.html [R=302,L]
+Isso:
+
+bloqueia visitantes
+
+mantém acesso apenas para você testar o site
+
+Opção 4 — Apenas esconder o site rapidamente
+No topo do HTML coloque:
+
+<style>
+body{
+    display:none;
+}
+</style>
+Não é profissional, mas funciona temporariamente.
+
+A melhor prática é a Opção 1, porque:
+
+não apaga nada
+
+mantém SEO mais organizado
+
+evita erro para visitantes
+
+passa aparência profissional
+
+
+
+faça isso neste html
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -776,3 +884,161 @@
 
 </body>
 </html>
+        <p style="font-size:20px;color:#cbd5e1;">
+            Estamos realizando melhorias para oferecer uma experiência melhor.
+        </p>
+
+        <p style="font-size:16px;color:#94a3b8;margin-top:20px;">
+            Voltaremos em breve.
+        </p>
+    </div>
+
+</body>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Papelaria Tatiana | Site em Manutenção</title>
+
+    <meta name="description"
+          content="Estamos realizando melhorias para oferecer uma experiência melhor. Voltaremos em breve." />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:'Poppins', sans-serif;
+            min-height:100vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            overflow:hidden;
+            background:
+                radial-gradient(circle at top left, rgba(255,211,24,0.25), transparent 25%),
+                radial-gradient(circle at bottom right, rgba(228,31,38,0.25), transparent 25%),
+                linear-gradient(135deg, #fff8f3 0%, #ffffff 100%);
+        }
+
+        .maintenance-box{
+            width:90%;
+            max-width:700px;
+            background:rgba(255,255,255,0.82);
+            backdrop-filter:blur(18px);
+            -webkit-backdrop-filter:blur(18px);
+            border:1px solid rgba(255,255,255,0.4);
+            border-radius:40px;
+            padding:60px 40px;
+            text-align:center;
+            box-shadow:0 20px 60px rgba(0,0,0,0.08);
+            animation:float 5s ease-in-out infinite;
+        }
+
+        .logo{
+            width:120px;
+            height:120px;
+            border-radius:50%;
+            object-fit:cover;
+            margin-bottom:30px;
+            box-shadow:0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        h1{
+            font-size:3rem;
+            color:#111111;
+            font-weight:800;
+            margin-bottom:20px;
+        }
+
+        p{
+            color:#555;
+            font-size:1.1rem;
+            line-height:1.8;
+        }
+
+        .badge{
+            display:inline-block;
+            background:#ffd318;
+            color:#111111;
+            padding:12px 24px;
+            border-radius:999px;
+            font-weight:600;
+            margin-bottom:30px;
+        }
+
+        .footer-text{
+            margin-top:30px;
+            font-size:0.95rem;
+            color:#888;
+        }
+
+        @keyframes float{
+            0%,100%{
+                transform:translateY(0px);
+            }
+
+            50%{
+                transform:translateY(-12px);
+            }
+        }
+
+        @media(max-width:768px){
+
+            h1{
+                font-size:2.2rem;
+            }
+
+            .maintenance-box{
+                padding:45px 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="maintenance-box">
+
+        <img src="images/PAPELARIATATINA.png"
+             alt="Papelaria Tatiana"
+             class="logo">
+
+        <span class="badge">
+            Site em Manutenção
+        </span>
+
+        <h1>
+            Estamos preparando novidades.
+        </h1>
+
+        <p>
+            Nosso site está passando por melhorias para oferecer uma experiência ainda mais moderna, rápida e criativa.
+        </p>
+
+        <p class="footer-text">
+            Voltaremos em breve.
+        </p>
+
+    </div>
+
+</body>
+
+</html>
+
+
