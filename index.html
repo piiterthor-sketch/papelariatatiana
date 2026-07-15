@@ -173,7 +173,7 @@
         border-radius: 30px;
       }
 
-      /* Gallery */
+      /* Gallery / Products */
 
       .gallery-item {
         overflow: hidden;
@@ -197,7 +197,10 @@
         transform: scale(1.05);
       }
 
-      /* Mobile */
+      /* Carrinho Sidebar */
+      #cartSidebar {
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
 
       @media (max-width: 768px) {
         .hero-title {
@@ -208,7 +211,77 @@
     </style>
   </head>
 
-  <body>
+  <body class="relative">
+    <!-- Botão Flutuante do Carrinho -->
+    <button
+      id="openCartBtn"
+      class="fixed bottom-6 right-6 z-40 bg-[#e41f26] hover:bg-black text-white p-5 rounded-full shadow-2xl flex items-center justify-center gap-2 transition-all duration-300"
+    >
+      <i class="fa-solid fa-basket-shopping text-2xl"></i>
+      <span
+        id="cartCount"
+        class="bg-yellow-300 text-black text-xs font-bold px-2 py-1 rounded-full"
+        >0</span
+      >
+    </button>
+
+    <!-- Sidebar do Carrinho de Compras -->
+    <div
+      id="cartSidebar"
+      class="fixed top-0 right-0 h-full w-full max-w-md bg-white z-50 shadow-2xl translate-x-full flex flex-col"
+    >
+      <div
+        class="p-6 border-b border-gray-100 flex items-center justify-between bg-gray-50"
+      >
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-basket-shopping text-xl text-[#e41f26]"></i>
+          <h3 class="font-bold text-xl text-[#111111]">Seu Carrinho</h3>
+        </div>
+        <button
+          id="closeCartBtn"
+          class="text-gray-400 hover:text-black text-2xl"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Lista de Itens (Scrollável) -->
+      <div
+        id="cartItemsContainer"
+        class="flex-1 overflow-y-auto p-6 flex flex-col gap-4"
+      >
+        <!-- Inserido dinamicamente via JS -->
+        <p class="text-gray-500 text-center my-auto">
+          Seu carrinho está vazio.
+        </p>
+      </div>
+
+      <!-- Resumo e Botão de Envio -->
+      <div class="p-6 border-t border-gray-100 bg-gray-50">
+        <div class="flex items-center justify-between mb-6">
+          <span class="text-gray-600 font-medium text-lg">Valor Total:</span>
+          <span
+            id="cartTotalValue"
+            class="text-2xl font-extrabold text-[#111111]"
+            >R$ 0,00</span
+          >
+        </div>
+        <button
+          id="sendWhatsappBtn"
+          class="w-full bg-[#25D366] hover:bg-black text-white font-bold py-4 rounded-full flex items-center justify-center gap-3 transition-colors duration-300 shadow-lg"
+        >
+          <i class="fab fa-whatsapp text-xl"></i>
+          Enviar Pedido no WhatsApp
+        </button>
+      </div>
+    </div>
+
+    <!-- Background overlay do carrinho -->
+    <div
+      id="cartOverlay"
+      class="fixed inset-0 bg-black/40 z-40 hidden opacity-0 transition-opacity duration-300"
+    ></div>
+
     <header class="fixed top-0 left-0 w-full z-50">
       <div class="container mx-auto px-6">
         <div
@@ -451,464 +524,1190 @@
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           <!-- Produto 1 -->
-          <div class="gallery-item flex flex-col">
-            <img
-              src="images/caderno-inteligente.jpg"
-              alt="Caderno Inteligente Criativo"
-              class="w-full h-[320px] object-cover"
-            />
-            <div class="p-5 text-center bg-white border-t border-gray-100">
-              <h3 class="font-bold text-lg text-[#111111]">
-                Caderno Inteligente Criativo
-              </h3>
+          <div
+            class="gallery-item flex flex-col justify-between h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <img
+                src="images/caderno-inteligente.jpg"
+                alt="Caderno Inteligente Criativo"
+                class="w-full h-[280px] object-cover"
+              />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-[#111111] mb-2 product-name">
+                  Caderno Inteligente Criativo
+                </h3>
+                <span
+                  class="text-xl font-extrabold text-[#e41f26] product-price"
+                  >R$ 89,90</span
+                >
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button
+                onclick="
+                  addToCart(
+                    'Caderno Inteligente Criativo',
+                    89.9,
+                    'images/caderno-inteligente.jpg',
+                  )
+                "
+                class="w-full bg-emerald-500 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i> Adicionar ao Pedido
+              </button>
             </div>
           </div>
 
           <!-- Produto 2 -->
-          <div class="gallery-item flex flex-col">
-            <img
-              src="images/planner-anual.jpg"
-              alt="Planner Anual Personalizado"
-              class="w-full h-[320px] object-cover"
-            />
-            <div class="p-5 text-center bg-white border-t border-gray-100">
-              <h3 class="font-bold text-lg text-[#111111]">
-                Planner Anual Personalizado
-              </h3>
+          <div
+            class="gallery-item flex flex-col justify-between h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <img
+                src="images/planner-anual.jpg"
+                alt="Planner Anual Personalizado"
+                class="w-full h-[280px] object-cover"
+              />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-[#111111] mb-2 product-name">
+                  Planner Anual Personalizado
+                </h3>
+                <span
+                  class="text-xl font-extrabold text-[#e41f26] product-price"
+                  >R$ 75,00</span
+                >
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button
+                onclick="
+                  addToCart(
+                    'Planner Anual Personalizado',
+                    75.0,
+                    'images/planner-anual.jpg',
+                  )
+                "
+                class="w-full bg-emerald-500 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i> Adicionar ao Pedido
+              </button>
             </div>
           </div>
 
           <!-- Produto 3 -->
-          <div class="gallery-item flex flex-col">
-            <img
-              src="images/estojo-premium.jpg"
-              alt="Estojo Premium Holográfico"
-              class="w-full h-[320px] object-cover"
-            />
-            <div class="p-5 text-center bg-white border-t border-gray-100">
-              <h3 class="font-bold text-lg text-[#111111]">
-                Estojo Premium Holográfico
-              </h3>
+          <div
+            class="gallery-item flex flex-col justify-between h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <img
+                src="images/estojo-premium.jpg"
+                alt="Estojo Premium Holográfico"
+                class="w-full h-[280px] object-cover"
+              />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-[#111111] mb-2 product-name">
+                  Estojo Premium Holográfico
+                </h3>
+                <span
+                  class="text-xl font-extrabold text-[#e41f26] product-price"
+                  >R$ 45,90</span
+                >
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button
+                onclick="
+                  addToCart(
+                    'Estojo Premium Holográfico',
+                    45.9,
+                    'images/estojo-premium.jpg',
+                  )
+                "
+                class="w-full bg-emerald-500 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i> Adicionar ao Pedido
+              </button>
             </div>
           </div>
 
           <!-- Produto 4 -->
-          <div class="gallery-item flex flex-col">
-            <img
-              src="images/canetas-gel.jpg"
-              alt="Kit Canetas em Gel Fineliner"
-              class="w-full h-[320px] object-cover"
-            />
-            <div class="p-5 text-center bg-white border-t border-gray-100">
-              <h3 class="font-bold text-lg text-[#111111]">
-                Kit Canetas Gel Fineliner
-              </h3>
+          <div
+            class="gallery-item flex flex-col justify-between h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <img
+                src="images/canetas-gel.jpg"
+                alt="Kit Canetas em Gel Fineliner"
+                class="w-full h-[280px] object-cover"
+              />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-[#111111] mb-2 product-name">
+                  Kit Canetas Gel Fineliner
+                </h3>
+                <span
+                  class="text-xl font-extrabold text-[#e41f26] product-price"
+                  >R$ 38,00</span
+                >
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button
+                onclick="
+                  addToCart(
+                    'Kit Canetas Gel Fineliner',
+                    38.0,
+                    'images/canetas-gel.jpg',
+                  )
+                "
+                class="w-full bg-emerald-500 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i> Adicionar ao Pedido
+              </button>
             </div>
           </div>
 
           <!-- Produto 5 -->
-          <div class="gallery-item flex flex-col">
-            <img
-              src="images/agenda-luxo.jpg"
-              alt="Agenda Planner de Luxo"
-              class="w-full h-[320px] object-cover"
-            />
-            <div class="p-5 text-center bg-white border-t border-gray-100">
-              <h3 class="font-bold text-lg text-[#111111]">
-                Agenda Planner de Luxo
-              </h3>
+          <div
+            class="gallery-item flex flex-col justify-between h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <img
+                src="images/agenda-luxo.jpg"
+                alt="Agenda Planner de Luxo"
+                class="w-full h-[280px] object-cover"
+              />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-[#111111] mb-2 product-name">
+                  Agenda Planner de Luxo
+                </h3>
+                <span
+                  class="text-xl font-extrabold text-[#e41f26] product-price"
+                  >R$ 68,00</span
+                >
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button
+                onclick="
+                  addToCart(
+                    'Agenda Planner de Luxo',
+                    68.0,
+                    'images/agenda-luxo.jpg',
+                  )
+                "
+                class="w-full bg-emerald-500 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i> Adicionar ao Pedido
+              </button>
             </div>
           </div>
 
           <!-- Produto 6 -->
-          <div class="gallery-item flex flex-col">
-            <img
-              src="images/marca-texto.jpg"
-              alt="Marca Texto Tons Pastel"
-              class="w-full h-[320px] object-cover"
-            />
-            <div class="p-5 text-center bg-white border-t border-gray-100">
-              <h3 class="font-bold text-lg text-[#111111]">
-                Marca Texto Tons Pastel
-              </h3>
+          <div
+            class="gallery-item flex flex-col justify-between h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <img
+                src="images/marca-texto.jpg"
+                alt="Marca Texto Tons Pastel"
+                class="w-full h-[280px] object-cover"
+              />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-[#111111] mb-2 product-name">
+                  Marca Texto Tons Pastel
+                </h3>
+                <span
+                  class="text-xl font-extrabold text-[#e41f26] product-price"
+                  >R$ 24,90</span
+                >
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button
+                onclick="
+                  addToCart(
+                    'Marca Texto Tons Pastel',
+                    24.9,
+                    'images/marca-texto.jpg',
+                  )
+                "
+                class="w-full bg-emerald-500 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i> Adicionar ao Pedido
+              </button>
             </div>
           </div>
 
           <!-- Produto 7 -->
-          <div class="gallery-item flex flex-col">
-            <img
-              src="images/bloco-notas.jpg"
-              alt="Bloco de Notas Autocolantes Cuted"
-              class="w-full h-[320px] object-cover"
-            />
-            <div class="p-5 text-center bg-white border-t border-gray-100">
-              <h3 class="font-bold text-lg text-[#111111]">
-                Bloco de Notas Autocolantes
-              </h3>
+          <div
+            class="gallery-item flex flex-col justify-between h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <img
+                src="images/bloco-notas.jpg"
+                alt="Bloco de Notas Autocolantes Cuted"
+                class="w-full h-[280px] object-cover"
+              />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-[#111111] mb-2 product-name">
+                  Bloco de Notas Autocolantes
+                </h3>
+                <span
+                  class="text-xl font-extrabold text-[#e41f26] product-price"
+                  >R$ 15,00</span
+                >
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button
+                onclick="
+                  addToCart(
+                    'Bloco de Notas Autocolantes',
+                    15.0,
+                    'images/bloco-notas.jpg',
+                  )
+                "
+                class="w-full bg-emerald-500 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i> Adicionar ao Pedido
+              </button>
             </div>
           </div>
 
           <!-- Produto 8 -->
-          <div class="gallery-item flex flex-col">
-            <img
-              src="images/lapiseira-tecnica.jpg"
-              alt="Lapiseira Técnica Premium"
-              class="w-full h-[320px] object-cover"
-            />
-            <div class="p-5 text-center bg-white border-t border-gray-100">
-              <h3 class="font-bold text-lg text-[#111111]">
-                Lapiseira Técnica Premium
-              </h3>
+          <div
+            class="gallery-item flex flex-col justify-between h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <img
+                src="images/lapiseira-tecnica.jpg"
+                alt="Lapiseira Técnica Premium"
+                class="w-full h-[280px] object-cover"
+              />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-[#111111] mb-2 product-name">
+                  Lapiseira Técnica Premium
+                </h3>
+                <span
+                  class="text-xl font-extrabold text-[#e41f26] product-price"
+                  >R$ 32,00</span
+                >
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button
+                onclick="
+                  addToCart(
+                    'Lapiseira Técnica Premium',
+                    32.0,
+                    'images/lapiseira-tecnica.jpg',
+                  )
+                "
+                class="w-full bg-emerald-500 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i> Adicionar ao Pedido
+              </button>
             </div>
           </div>
 
           <!-- Produto 9 -->
-          <div class="gallery-item flex flex-col">
-            <img
-              src="images/lapis-cor.jpg"
-              alt="Estojo Lápis de Cor Aquarelável"
-              class="w-full h-[320px] object-cover"
-            />
-            <div class="p-5 text-center bg-white border-t border-gray-100">
-              <h3 class="font-bold text-lg text-[#111111]">
-                Lápis de Cor Aquarelável
-              </h3>
+          <div
+            class="gallery-item flex flex-col justify-between h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <img
+                src="images/lapis-cor.jpg"
+                alt="Estojo Lápis de Cor Aquarelável"
+                class="w-full h-[280px] object-cover"
+              />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-[#111111] mb-2 product-name">
+                  Lápis de Cor Aquarelável
+                </h3>
+                <span
+                  class="text-xl font-extrabold text-[#e41f26] product-price"
+                  >R$ 59,90</span
+                >
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button
+                onclick="
+                  addToCart(
+                    'Lápis de Cor Aquarelável',
+                    59.9,
+                    'images/lapis-cor.jpg',
+                  )
+                "
+                class="w-full bg-emerald-500 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i> Adicionar ao Pedido
+              </button>
             </div>
           </div>
 
           <!-- Produto 10 -->
-          <div class="gallery-item flex flex-col">
-            <img
-              src="images/caderno-sketchbook.jpg"
-              alt="Sketchbook para Desenho"
-              class="w-full h-[320px] object-cover"
-            />
-            <div class="p-5 text-center bg-white border-t border-gray-100">
-              <h3 class="font-bold text-lg text-[#111111]">
-                Sketchbook para Desenho
-              </h3>
+          <div
+            class="gallery-item flex flex-col justify-between h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <img
+                src="images/caderno-sketchbook.jpg"
+                alt="Sketchbook para Desenho"
+                class="w-full h-[280px] object-cover"
+              />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-[#111111] mb-2 product-name">
+                  Sketchbook para Desenho
+                </h3>
+                <span
+                  class="text-xl font-extrabold text-[#e41f26] product-price"
+                  >R$ 42,00</span
+                >
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button
+                onclick="
+                  addToCart(
+                    'Sketchbook para Desenho',
+                    42.0,
+                    'images/caderno-sketchbook.jpg',
+                  )
+                "
+                class="w-full bg-emerald-500 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i> Adicionar ao Pedido
+              </button>
             </div>
           </div>
 
           <!-- Produto 11 -->
-          <div class="gallery-item flex flex-col">
-            <img
-              src="images/fita-washi.jpg"
-              alt="Kit Washi Tapes Decorativas"
-              class="w-full h-[320px] object-cover"
-            />
-            <div class="p-5 text-center bg-white border-t border-gray-100">
-              <h3 class="font-bold text-lg text-[#111111]">
-                Kit Washi Tapes Decorativas
-              </h3>
+          <div
+            class="gallery-item flex flex-col justify-between h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <img
+                src="images/fita-washi.jpg"
+                alt="Kit Washi Tapes Decorativas"
+                class="w-full h-[280px] object-cover"
+              />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-[#111111] mb-2 product-name">
+                  Kit Washi Tapes Decorativas
+                </h3>
+                <span
+                  class="text-xl font-extrabold text-[#e41f26] product-price"
+                  >R$ 29,90</span
+                >
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button
+                onclick="
+                  addToCart(
+                    'Kit Washi Tapes Decorativas',
+                    29.9,
+                    'images/fita-washi.jpg',
+                  )
+                "
+                class="w-full bg-emerald-500 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i> Adicionar ao Pedido
+              </button>
             </div>
           </div>
 
           <!-- Produto 12 -->
-          <div class="gallery-item flex flex-col">
-            <img
-              src="images/organizador-mesa.jpg"
-              alt="Organizador de Mesa Acrílico"
-              class="w-full h-[320px] object-cover"
-            />
-            <div class="p-5 text-center bg-white border-t border-gray-100">
-              <h3 class="font-bold text-lg text-[#111111]">
-                Organizador de Mesa Acrílico
-              </h3>
+          <div
+            class="gallery-item flex flex-col justify-between h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <img
+                src="images/organizador-mesa.jpg"
+                alt="Organizador de Mesa Acrílico"
+                class="w-full h-[280px] object-cover"
+              />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-[#111111] mb-2 product-name">
+                  Organizador de Mesa Acrílico
+                </h3>
+                <span
+                  class="text-xl font-extrabold text-[#e41f26] product-price"
+                  >R$ 49,90</span
+                >
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button
+                onclick="
+                  addToCart(
+                    'Organizador de Mesa Acrílico',
+                    49.9,
+                    'images/organizador-mesa.jpg',
+                  )
+                "
+                class="w-full bg-emerald-500 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i> Adicionar ao Pedido
+              </button>
             </div>
           </div>
 
           <!-- Produto 13 -->
-          <div class="gallery-item flex flex-col">
-            <img
-              src="images/tesoura-criativa.jpg"
-              alt="Tesoura Escolar Criativa Pastel"
-              class="w-full h-[320px] object-cover"
-            />
-            <div class="p-5 text-center bg-white border-t border-gray-100">
-              <h3 class="font-bold text-lg text-[#111111]">
-                Tesoura Criativa Pastel
-              </h3>
+          <div
+            class="gallery-item flex flex-col justify-between h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <img
+                src="images/tesoura-criativa.jpg"
+                alt="Tesoura Escolar Criativa Pastel"
+                class="w-full h-[280px] object-cover"
+              />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-[#111111] mb-2 product-name">
+                  Tesoura Criativa Pastel
+                </h3>
+                <span
+                  class="text-xl font-extrabold text-[#e41f26] product-price"
+                  >R$ 18,50</span
+                >
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button
+                onclick="
+                  addToCart(
+                    'Tesoura Criativa Pastel',
+                    18.5,
+                    'images/tesoura-criativa.jpg',
+                  )
+                "
+                class="w-full bg-emerald-500 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i> Adicionar ao Pedido
+              </button>
             </div>
           </div>
 
           <!-- Produto 14 -->
-          <div class="gallery-item flex flex-col">
-            <img
-              src="images/corretivo-fita.jpg"
-              alt="Corretivo em Fita Ergonômico"
-              class="w-full h-[320px] object-cover"
-            />
-            <div class="p-5 text-center bg-white border-t border-gray-100">
-              <h3 class="font-bold text-lg text-[#111111]">
-                Corretivo em Fita Ergonômico
-              </h3>
+          <div
+            class="gallery-item flex flex-col justify-between h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <img
+                src="images/corretivo-fita.jpg"
+                alt="Corretivo em Fita Ergonômico"
+                class="w-full h-[280px] object-cover"
+              />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-[#111111] mb-2 product-name">
+                  Corretivo em Fita Ergonômico
+                </h3>
+                <span
+                  class="text-xl font-extrabold text-[#e41f26] product-price"
+                  >R$ 14,00</span
+                >
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button
+                onclick="
+                  addToCart(
+                    'Corretivo em Fita Ergonômico',
+                    14.0,
+                    'images/corretivo-fita.jpg',
+                  )
+                "
+                class="w-full bg-emerald-500 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i> Adicionar ao Pedido
+              </button>
             </div>
           </div>
 
           <!-- Produto 15 -->
-          <div class="gallery-item flex flex-col">
-            <img
-              src="images/grampeador-mini.jpg"
-              alt="Mini Grampeador com Extrator"
-              class="w-full h-[320px] object-cover"
-            />
-            <div class="p-5 text-center bg-white border-t border-gray-100">
-              <h3 class="font-bold text-lg text-[#111111]">
-                Mini Grampeador Candy Color
-              </h3>
+          <div
+            class="gallery-item flex flex-col justify-between h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <img
+                src="images/grampeador-mini.jpg"
+                alt="Mini Grampeador com Extrator"
+                class="w-full h-[280px] object-cover"
+              />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-[#111111] mb-2 product-name">
+                  Mini Grampeador Candy Color
+                </h3>
+                <span
+                  class="text-xl font-extrabold text-[#e41f26] product-price"
+                  >R$ 22,90</span
+                >
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button
+                onclick="
+                  addToCart(
+                    'Mini Grampeador Candy Color',
+                    22.9,
+                    'images/grampeador-mini.jpg',
+                  )
+                "
+                class="w-full bg-emerald-500 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i> Adicionar ao Pedido
+              </button>
             </div>
           </div>
 
           <!-- Produto 16 -->
-          <div class="gallery-item flex flex-col">
-            <img
-              src="images/caderno-quadriculado.jpg"
-              alt="Caderno Universitário Quadriculado"
-              class="w-full h-[320px] object-cover"
-            />
-            <div class="p-5 text-center bg-white border-t border-gray-100">
-              <h3 class="font-bold text-lg text-[#111111]">
-                Caderno Universitário
-              </h3>
+          <div
+            class="gallery-item flex flex-col justify-between h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <img
+                src="images/caderno-quadriculado.jpg"
+                alt="Caderno Universitário Quadriculado"
+                class="w-full h-[280px] object-cover"
+              />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-[#111111] mb-2 product-name">
+                  Caderno Universitário
+                </h3>
+                <span
+                  class="text-xl font-extrabold text-[#e41f26] product-price"
+                  >R$ 39,90</span
+                >
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button
+                onclick="
+                  addToCart(
+                    'Caderno Universitário',
+                    39.9,
+                    'images/caderno-quadriculado.jpg',
+                  )
+                "
+                class="w-full bg-emerald-500 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i> Adicionar ao Pedido
+              </button>
             </div>
           </div>
 
           <!-- Produto 17 -->
-          <div class="gallery-item flex flex-col">
-            <img
-              src="images/canetas-brush.jpg"
-              alt="Kit Canetas Brush Pen Dual"
-              class="w-full h-[320px] object-cover"
-            />
-            <div class="p-5 text-center bg-white border-t border-gray-100">
-              <h3 class="font-bold text-lg text-[#111111]">
-                Kit Canetas Brush Pen Dual
-              </h3>
+          <div
+            class="gallery-item flex flex-col justify-between h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <img
+                src="images/canetas-brush.jpg"
+                alt="Kit Canetas Brush Pen Dual"
+                class="w-full h-[280px] object-cover"
+              />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-[#111111] mb-2 product-name">
+                  Kit Canetas Brush Pen Dual
+                </h3>
+                <span
+                  class="text-xl font-extrabold text-[#e41f26] product-price"
+                  >R$ 65,00</span
+                >
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button
+                onclick="
+                  addToCart(
+                    'Kit Canetas Brush Pen Dual',
+                    65.0,
+                    'images/canetas-brush.jpg',
+                  )
+                "
+                class="w-full bg-emerald-500 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i> Adicionar ao Pedido
+              </button>
             </div>
           </div>
 
           <!-- Produto 18 -->
-          <div class="gallery-item flex flex-col">
-            <img
-              src="images/clips-decorados.jpg"
-              alt="Clips de Papel Decorados Rose Gold"
-              class="w-full h-[320px] object-cover"
-            />
-            <div class="p-5 text-center bg-white border-t border-gray-100">
-              <h3 class="font-bold text-lg text-[#111111]">
-                Clips de Papel Rose Gold
-              </h3>
+          <div
+            class="gallery-item flex flex-col justify-between h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <img
+                src="images/clips-decorados.jpg"
+                alt="Clips de Papel Decorados Rose Gold"
+                class="w-full h-[280px] object-cover"
+              />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-[#111111] mb-2 product-name">
+                  Clips de Papel Rose Gold
+                </h3>
+                <span
+                  class="text-xl font-extrabold text-[#e41f26] product-price"
+                  >R$ 19,95</span
+                >
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button
+                onclick="
+                  addToCart(
+                    'Clips de Papel Rose Gold',
+                    19.95,
+                    'images/clips-decorados.jpg',
+                  )
+                "
+                class="w-full bg-emerald-500 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i> Adicionar ao Pedido
+              </button>
             </div>
           </div>
 
           <!-- Produto 19 -->
-          <div class="gallery-item flex flex-col">
-            <img
-              src="images/fichario-universitario.jpg"
-              alt="Fichário Universitário com Alça"
-              class="w-full h-[320px] object-cover"
-            />
-            <div class="p-5 text-center bg-white border-t border-gray-100">
-              <h3 class="font-bold text-lg text-[#111111]">
-                Fichário Universitário Premium
-              </h3>
+          <div
+            class="gallery-item flex flex-col justify-between h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <img
+                src="images/fichario-universitario.jpg"
+                alt="Fichário Universitário com Alça"
+                class="w-full h-[280px] object-cover"
+              />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-[#111111] mb-2 product-name">
+                  Fichário Universitário Premium
+                </h3>
+                <span
+                  class="text-xl font-extrabold text-[#e41f26] product-price"
+                  >R$ 129,90</span
+                >
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button
+                onclick="
+                  addToCart(
+                    'Fichário Universitário Premium',
+                    129.9,
+                    'images/fichario-universitario.jpg',
+                  )
+                "
+                class="w-full bg-emerald-500 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i> Adicionar ao Pedido
+              </button>
             </div>
           </div>
 
           <!-- Produto 20 -->
-          <div class="gallery-item flex flex-col">
-            <img
-              src="images/borracha-neon.jpg"
-              alt="Borracha Neon Macia sem Sujeira"
-              class="w-full h-[320px] object-cover"
-            />
-            <div class="p-5 text-center bg-white border-t border-gray-100">
-              <h3 class="font-bold text-lg text-[#111111]">
-                Borracha Neon Macia
-              </h3>
+          <div
+            class="gallery-item flex flex-col justify-between h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <img
+                src="images/borracha-neon.jpg"
+                alt="Borracha Neon Macia sem Sujeira"
+                class="w-full h-[280px] object-cover"
+              />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-[#111111] mb-2 product-name">
+                  Borracha Neon Macia
+                </h3>
+                <span
+                  class="text-xl font-extrabold text-[#e41f26] product-price"
+                  >R$ 8,50</span
+                >
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button
+                onclick="
+                  addToCart(
+                    'Borracha Neon Macia',
+                    8.5,
+                    'images/borracha-neon.jpg',
+                  )
+                "
+                class="w-full bg-emerald-500 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i> Adicionar ao Pedido
+              </button>
             </div>
           </div>
 
           <!-- Produto 21 -->
-          <div class="gallery-item flex flex-col">
-            <img
-              src="images/apontador-deposito.jpg"
-              alt="Apontador com Depósito Duplo"
-              class="w-full h-[320px] object-cover"
-            />
-            <div class="p-5 text-center bg-white border-t border-gray-100">
-              <h3 class="font-bold text-lg text-[#111111]">
-                Apontador com Depósito
-              </h3>
+          <div
+            class="gallery-item flex flex-col justify-between h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <img
+                src="images/apontador-deposito.jpg"
+                alt="Apontador com Depósito Duplo"
+                class="w-full h-[280px] object-cover"
+              />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-[#111111] mb-2 product-name">
+                  Apontador com Depósito
+                </h3>
+                <span
+                  class="text-xl font-extrabold text-[#e41f26] product-price"
+                  >R$ 12,00</span
+                >
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button
+                onclick="
+                  addToCart(
+                    'Apontador com Depósito',
+                    12.0,
+                    'images/apontador-deposito.jpg',
+                  )
+                "
+                class="w-full bg-emerald-500 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i> Adicionar ao Pedido
+              </button>
             </div>
           </div>
 
           <!-- Produto 22 -->
-          <div class="gallery-item flex flex-col">
-            <img
-              src="images/bloco-weekly.jpg"
-              alt="Bloco Planner Semanal de Mesa"
-              class="w-full h-[320px] object-cover"
-            />
-            <div class="p-5 text-center bg-white border-t border-gray-100">
-              <h3 class="font-bold text-lg text-[#111111]">
-                Planner Semanal de Mesa
-              </h3>
+          <div
+            class="gallery-item flex flex-col justify-between h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <img
+                src="images/bloco-weekly.jpg"
+                alt="Bloco Planner Semanal de Mesa"
+                class="w-full h-[280px] object-cover"
+              />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-[#111111] mb-2 product-name">
+                  Planner Semanal de Mesa
+                </h3>
+                <span
+                  class="text-xl font-extrabold text-[#e41f26] product-price"
+                  >R$ 35,00</span
+                >
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button
+                onclick="
+                  addToCart(
+                    'Planner Semanal de Mesa',
+                    35.0,
+                    'images/bloco-weekly.jpg',
+                  )
+                "
+                class="w-full bg-emerald-500 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i> Adicionar ao Pedido
+              </button>
             </div>
           </div>
 
           <!-- Produto 23 -->
-          <div class="gallery-item flex flex-col">
-            <img
-              src="images/caderneta-pautada.jpg"
-              alt="Caderneta Pautada para Anotações"
-              class="w-full h-[320px] object-cover"
-            />
-            <div class="p-5 text-center bg-white border-t border-gray-100">
-              <h3 class="font-bold text-lg text-[#111111]">
-                Caderneta de Anotações
-              </h3>
+          <div
+            class="gallery-item flex flex-col justify-between h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <img
+                src="images/caderneta-pautada.jpg"
+                alt="Caderneta Pautada para Anotações"
+                class="w-full h-[280px] object-cover"
+              />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-[#111111] mb-2 product-name">
+                  Caderneta de Anotações
+                </h3>
+                <span
+                  class="text-xl font-extrabold text-[#e41f26] product-price"
+                  >R$ 27,90</span
+                >
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button
+                onclick="
+                  addToCart(
+                    'Caderneta de Anotações',
+                    27.9,
+                    'images/caderneta-pautada.jpg',
+                  )
+                "
+                class="w-full bg-emerald-500 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i> Adicionar ao Pedido
+              </button>
             </div>
           </div>
 
           <!-- Produto 24 -->
-          <div class="gallery-item flex flex-col">
-            <img
-              src="images/caneta-tinteiro.jpg"
-              alt="Caneta Tinteiro Clássica Criativa"
-              class="w-full h-[320px] object-cover"
-            />
-            <div class="p-5 text-center bg-white border-t border-gray-100">
-              <h3 class="font-bold text-lg text-[#111111]">
-                Caneta Tinteiro Fina
-              </h3>
+          <div
+            class="gallery-item flex flex-col justify-between h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <img
+                src="images/caneta-tinteiro.jpg"
+                alt="Caneta Tinteiro Clássica Criativa"
+                class="w-full h-[280px] object-cover"
+              />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-[#111111] mb-2 product-name">
+                  Caneta Tinteiro Fina
+                </h3>
+                <span
+                  class="text-xl font-extrabold text-[#e41f26] product-price"
+                  >R$ 95,00</span
+                >
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button
+                onclick="
+                  addToCart(
+                    'Caneta Tinteiro Fina',
+                    95.0,
+                    'images/caneta-tinteiro.jpg',
+                  )
+                "
+                class="w-full bg-emerald-500 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i> Adicionar ao Pedido
+              </button>
             </div>
           </div>
 
           <!-- Produto 25 -->
-          <div class="gallery-item flex flex-col">
-            <img
-              src="images/pasta-sanfonada.jpg"
-              alt="Pasta Sanfonada Organizadora Pastel"
-              class="w-full h-[320px] object-cover"
-            />
-            <div class="p-5 text-center bg-white border-t border-gray-100">
-              <h3 class="font-bold text-lg text-[#111111]">
-                Pasta Organizadora Pastel
-              </h3>
+          <div
+            class="gallery-item flex flex-col justify-between h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <img
+                src="images/pasta-sanfonada.jpg"
+                alt="Pasta Sanfonada Organizadora Pastel"
+                class="w-full h-[280px] object-cover"
+              />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-[#111111] mb-2 product-name">
+                  Pasta Organizadora Pastel
+                </h3>
+                <span
+                  class="text-xl font-extrabold text-[#e41f26] product-price"
+                  >R$ 34,00</span
+                >
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button
+                onclick="
+                  addToCart(
+                    'Pasta Organizadora Pastel',
+                    34.0,
+                    'images/pasta-sanfonada.jpg',
+                  )
+                "
+                class="w-full bg-emerald-500 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i> Adicionar ao Pedido
+              </button>
             </div>
           </div>
 
           <!-- Produto 26 -->
-          <div class="gallery-item flex flex-col">
-            <img
-              src="images/calculadora-fofa.jpg"
-              alt="Calculadora Portátil Design Criativo"
-              class="w-full h-[320px] object-cover"
-            />
-            <div class="p-5 text-center bg-white border-t border-gray-100">
-              <h3 class="font-bold text-lg text-[#111111]">
-                Calculadora Design Criativo
-              </h3>
+          <div
+            class="gallery-item flex flex-col justify-between h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <img
+                src="images/calculadora-fofa.jpg"
+                alt="Calculadora Portátil Design Criativo"
+                class="w-full h-[280px] object-cover"
+              />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-[#111111] mb-2 product-name">
+                  Calculadora Design Criativo
+                </h3>
+                <span
+                  class="text-xl font-extrabold text-[#e41f26] product-price"
+                  >R$ 55,00</span
+                >
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button
+                onclick="
+                  addToCart(
+                    'Calculadora Design Criativo',
+                    55.0,
+                    'images/calculadora-fofa.jpg',
+                  )
+                "
+                class="w-full bg-emerald-500 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i> Adicionar ao Pedido
+              </button>
             </div>
           </div>
 
           <!-- Produto 27 -->
-          <div class="gallery-item flex flex-col">
-            <img
-              src="images/regua-metal.jpg"
-              alt="Régua de Metal com Acabamento Luxo"
-              class="w-full h-[320px] object-cover"
-            />
-            <div class="p-5 text-center bg-white border-t border-gray-100">
-              <h3 class="font-bold text-lg text-[#111111]">
-                Régua Metálica Premium
-              </h3>
+          <div
+            class="gallery-item flex flex-col justify-between h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <img
+                src="images/regua-metal.jpg"
+                alt="Régua de Metal com Acabamento Luxo"
+                class="w-full h-[280px] object-cover"
+              />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-[#111111] mb-2 product-name">
+                  Régua Metálica Premium
+                </h3>
+                <span
+                  class="text-xl font-extrabold text-[#e41f26] product-price"
+                  >R$ 16,00</span
+                >
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button
+                onclick="
+                  addToCart(
+                    'Régua Metálica Premium',
+                    16.0,
+                    'images/regua-metal.jpg',
+                  )
+                "
+                class="w-full bg-emerald-500 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i> Adicionar ao Pedido
+              </button>
             </div>
           </div>
 
           <!-- Produto 28 -->
-          <div class="gallery-item flex flex-col">
-            <img
-              src="images/perfurador-papel.jpg"
-              alt="Perfurador de Papel Artesanal"
-              class="w-full h-[320px] object-cover"
-            />
-            <div class="p-5 text-center bg-white border-t border-gray-100">
-              <h3 class="font-bold text-lg text-[#111111]">
-                Perfurador Artesanal
-              </h3>
+          <div
+            class="gallery-item flex flex-col justify-between h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <img
+                src="images/perfurador-papel.jpg"
+                alt="Perfurador de Papel Artesanal"
+                class="w-full h-[280px] object-cover"
+              />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-[#111111] mb-2 product-name">
+                  Perfurador Artesanal
+                </h3>
+                <span
+                  class="text-xl font-extrabold text-[#e41f26] product-price"
+                  >R$ 26,90</span
+                >
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button
+                onclick="
+                  addToCart(
+                    'Perfurador Artesanal',
+                    26.9,
+                    'images/perfurador-papel.jpg',
+                  )
+                "
+                class="w-full bg-emerald-500 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i> Adicionar ao Pedido
+              </button>
             </div>
           </div>
 
           <!-- Produto 29 -->
-          <div class="gallery-item flex flex-col">
-            <img
-              src="images/carimbo-personalizado.jpg"
-              alt="Kit Carimbos Divertidos Decorativos"
-              class="w-full h-[320px] object-cover"
-            />
-            <div class="p-5 text-center bg-white border-t border-gray-100">
-              <h3 class="font-bold text-lg text-[#111111]">
-                Kit Carimbos Divertidos
-              </h3>
+          <div
+            class="gallery-item flex flex-col justify-between h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <img
+                src="images/carimbo-personalizado.jpg"
+                alt="Kit Carimbos Divertidos Decorativos"
+                class="w-full h-[280px] object-cover"
+              />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-[#111111] mb-2 product-name">
+                  Kit Carimbos Divertidos
+                </h3>
+                <span
+                  class="text-xl font-extrabold text-[#e41f26] product-price"
+                  >R$ 31,50</span
+                >
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button
+                onclick="
+                  addToCart(
+                    'Kit Carimbos Divertidos',
+                    31.5,
+                    'images/carimbo-personalizado.jpg',
+                  )
+                "
+                class="w-full bg-emerald-500 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i> Adicionar ao Pedido
+              </button>
             </div>
           </div>
 
           <!-- Produto 30 -->
-          <div class="gallery-item flex flex-col">
-            <img
-              src="images/tintas-guache.jpg"
-              alt="Estojo Tintas Guache Metálicas"
-              class="w-full h-[320px] object-cover"
-            />
-            <div class="p-5 text-center bg-white border-t border-gray-100">
-              <h3 class="font-bold text-lg text-[#111111]">
-                Guache Cores Metálicas
-              </h3>
+          <div
+            class="gallery-item flex flex-col justify-between h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <img
+                src="images/tintas-guache.jpg"
+                alt="Estojo Tintas Guache Metálicas"
+                class="w-full h-[280px] object-cover"
+              />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-[#111111] mb-2 product-name">
+                  Guache Cores Metálicas
+                </h3>
+                <span
+                  class="text-xl font-extrabold text-[#e41f26] product-price"
+                  >R$ 28,00</span
+                >
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button
+                onclick="
+                  addToCart(
+                    'Guache Cores Metálicas',
+                    28.0,
+                    'images/tintas-guache.jpg',
+                  )
+                "
+                class="w-full bg-emerald-500 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i> Adicionar ao Pedido
+              </button>
             </div>
           </div>
 
           <!-- Produto 31 -->
-          <div class="gallery-item flex flex-col">
-            <img
-              src="images/lapis-infinito.jpg"
-              alt="Lápis Infinito Ecológico com Borracha"
-              class="w-full h-[320px] object-cover"
-            />
-            <div class="p-5 text-center bg-white border-t border-gray-100">
-              <h3 class="font-bold text-lg text-[#111111]">
-                Lápis Infinito Tecnológico
-              </h3>
+          <div
+            class="gallery-item flex flex-col justify-between h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <img
+                src="images/lapis-infinito.jpg"
+                alt="Lápis Infinito Ecológico com Borracha"
+                class="w-full h-[280px] object-cover"
+              />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-[#111111] mb-2 product-name">
+                  Lápis Infinito Tecnológico
+                </h3>
+                <span
+                  class="text-xl font-extrabold text-[#e41f26] product-price"
+                  >R$ 19,90</span
+                >
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button
+                onclick="
+                  addToCart(
+                    'Lápis Infinito Tecnológico',
+                    19.9,
+                    'images/lapis-infinito.jpg',
+                  )
+                "
+                class="w-full bg-emerald-500 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i> Adicionar ao Pedido
+              </button>
             </div>
           </div>
 
           <!-- Produto 32 -->
-          <div class="gallery-item flex flex-col">
-            <img
-              src="images/porta-lapis.jpg"
-              alt="Porta Lápis Giratório Multifuncional"
-              class="w-full h-[320px] object-cover"
-            />
-            <div class="p-5 text-center bg-white border-t border-gray-100">
-              <h3 class="font-bold text-lg text-[#111111]">
-                Porta Lápis Giratório
-              </h3>
+          <div
+            class="gallery-item flex flex-col justify-between h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <img
+                src="images/porta-lapis.jpg"
+                alt="Porta Lápis Giratório Multifuncional"
+                class="w-full h-[280px] object-cover"
+              />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-[#111111] mb-2 product-name">
+                  Porta Lápis Giratório
+                </h3>
+                <span
+                  class="text-xl font-extrabold text-[#e41f26] product-price"
+                  >R$ 44,90</span
+                >
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button
+                onclick="
+                  addToCart(
+                    'Porta Lápis Giratório',
+                    44.9,
+                    'images/porta-lapis.jpg',
+                  )
+                "
+                class="w-full bg-emerald-500 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i> Adicionar ao Pedido
+              </button>
             </div>
           </div>
 
           <!-- Produto 33 -->
-          <div class="gallery-item flex flex-col">
-            <img
-              src="images/bloco-grid.jpg"
-              alt="Bloco Refil para Fichário Dot Grid"
-              class="w-full h-[320px] object-cover"
-            />
-            <div class="p-5 text-center bg-white border-t border-gray-100">
-              <h3 class="font-bold text-lg text-[#111111]">
-                Refil Fichário Dot Grid
-              </h3>
+          <div
+            class="gallery-item flex flex-col justify-between h-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <img
+                src="images/bloco-grid.jpg"
+                alt="Bloco Refil para Fichário Dot Grid"
+                class="w-full h-[280px] object-cover"
+              />
+              <div class="p-5">
+                <h3 class="font-bold text-lg text-[#111111] mb-2 product-name">
+                  Refil Fichário Dot Grid
+                </h3>
+                <span
+                  class="text-xl font-extrabold text-[#e41f26] product-price"
+                  >R$ 21,90</span
+                >
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button
+                onclick="
+                  addToCart(
+                    'Refil Fichário Dot Grid',
+                    21.9,
+                    'images/bloco-grid.jpg',
+                  )
+                "
+                class="w-full bg-emerald-500 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i> Adicionar ao Pedido
+              </button>
             </div>
           </div>
         </div>
@@ -990,9 +1789,7 @@
 
     <footer id="contato" class="bg-blue-900 text-white py-16">
       <div class="container mx-auto px-6">
-        <!-- Grid Principal (2 colunas no desktop: Logo/Texto e Contatos) -->
         <div class="grid md:grid-cols-2 gap-14 pb-12 border-b border-white/10">
-          <!-- Coluna 1: Logo e Nome -->
           <div class="flex items-center gap-4">
             <img
               src="images/PAPELARIATATINA.png"
@@ -1007,7 +1804,6 @@
             </div>
           </div>
 
-          <!-- Coluna 2: Links de Contato -->
           <div>
             <h3 class="text-2xl font-bold mb-6 text-yellow-300">Contato</h3>
 
@@ -1034,9 +1830,7 @@
             </div>
           </div>
         </div>
-        <!-- Fim do Grid Principal -->
 
-        <!-- Barra Inferior (Direitos Autorais e Créditos) -->
         <div
           class="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/60 text-center md:text-left"
         >
@@ -1100,6 +1894,138 @@
         opacity: 0,
         duration: 1.2,
         ease: "power4.out",
+      });
+
+      /* =======================================================
+         LOGICA DOURADA DO CARRINHO DE COMPRAS E WHATSAPP
+         ======================================================= */
+      let cart = [];
+      const whatsappNumber = "5531995471178"; // Número configurado conforme seu HTML
+
+      const openCartBtn = document.getElementById("openCartBtn");
+      const closeCartBtn = document.getElementById("closeCartBtn");
+      const cartSidebar = document.getElementById("cartSidebar");
+      const cartOverlay = document.getElementById("cartOverlay");
+      const cartItemsContainer = document.getElementById("cartItemsContainer");
+      const cartTotalValue = document.getElementById("cartTotalValue");
+      const cartCount = document.getElementById("cartCount");
+      const sendWhatsappBtn = document.getElementById("sendWhatsappBtn");
+
+      function toggleCart() {
+        const isClosed = cartSidebar.classList.contains("translate-x-full");
+        if (isClosed) {
+          cartSidebar.classList.remove("translate-x-full");
+          cartOverlay.classList.remove("hidden");
+          setTimeout(() => cartOverlay.classList.add("opacity-100"), 10);
+        } else {
+          cartSidebar.classList.add("translate-x-full");
+          cartOverlay.classList.remove("opacity-100");
+          setTimeout(() => cartOverlay.classList.add("hidden"), 300);
+        }
+      }
+
+      openCartBtn.addEventListener("click", toggleCart);
+      closeCartBtn.addEventListener("click", toggleCart);
+      cartOverlay.addEventListener("click", toggleCart);
+
+      function addToCart(name, price, image) {
+        const existingItem = cart.find((item) => item.name === name);
+        if (existingItem) {
+          existingItem.quantity += 1;
+        } else {
+          cart.push({ name, price, image, quantity: 1 });
+        }
+        updateCartUI();
+
+        // Abre o carrinho automaticamente ao adicionar para feedback do cliente
+        if (cartSidebar.classList.contains("translate-x-full")) {
+          toggleCart();
+        }
+      }
+
+      function removeFromCart(name) {
+        cart = cart.filter((item) => item.name !== name);
+        updateCartUI();
+      }
+
+      function changeQuantity(name, change) {
+        const item = cart.find((item) => item.name === name);
+        if (item) {
+          item.quantity += change;
+          if (item.quantity <= 0) {
+            removeFromCart(name);
+            return;
+          }
+        }
+        updateCartUI();
+      }
+
+      function updateCartUI() {
+        cartItemsContainer.innerHTML = "";
+        let total = 0;
+        let totalItems = 0;
+
+        if (cart.length === 0) {
+          cartItemsContainer.innerHTML =
+            '<p class="text-gray-500 text-center my-auto">Seu carrinho está vazio.</p>';
+          cartTotalValue.innerText = "R$ 0,00";
+          cartCount.innerText = "0";
+          return;
+        }
+
+        cart.forEach((item) => {
+          total += item.price * item.quantity;
+          totalItems += item.quantity;
+
+          const itemElement = document.createElement("div");
+          itemElement.className =
+            "flex items-center justify-between gap-4 p-3 bg-gray-50 rounded-2xl border border-gray-100";
+          itemElement.innerHTML = `
+            <img src="${item.image}" class="w-16 h-16 object-cover rounded-xl bg-white shadow-sm" onerror="this.src='https://placehold.co/150'">
+            <div class="flex-1">
+              <h4 class="font-bold text-sm text-[#111111] line-clamp-1">${item.name}</h4>
+              <p class="text-xs text-[#e41f26] font-extrabold mt-0.5">R$ ${item.price.toFixed(2).replace(".", ",")}</p>
+              <div class="flex items-center gap-3 mt-2">
+                <button onclick="changeQuantity('${item.name}', -1)" class="w-6 h-6 rounded-full bg-white border border-gray-200 flex items-center justify-center text-xs font-bold text-gray-600 hover:bg-gray-100">-</button>
+                <span class="text-sm font-semibold">${item.quantity}</span>
+                <button onclick="changeQuantity('${item.name}', 1)" class="w-6 h-6 rounded-full bg-white border border-gray-200 flex items-center justify-center text-xs font-bold text-gray-600 hover:bg-gray-100">+</button>
+              </div>
+            </div>
+            <button onclick="removeFromCart('${item.name}')" class="text-gray-400 hover:text-red-500 transition-colors p-2">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          `;
+          cartItemsContainer.appendChild(itemElement);
+        });
+
+        cartTotalValue.innerText = `R$ ${total.toFixed(2).replace(".", ",")}`;
+        cartCount.innerText = totalItems;
+      }
+
+      sendWhatsappBtn.addEventListener("click", () => {
+        if (cart.length === 0) {
+          alert("Adicione pelo menos um produto ao carrinho antes de enviar!");
+          return;
+        }
+
+        let total = 0;
+        let message = `Olá, Papelaria Tatiana! Gostaria de fazer o seguinte pedido:\n\n`;
+
+        cart.forEach((item) => {
+          const subtotal = item.price * item.quantity;
+          total += subtotal;
+          message += `*${item.quantity}x* - ${item.name} (R$ ${item.price.toFixed(2).replace(".", ",")} cada) \n`;
+        });
+
+        message += `\n-----------------------------------\n`;
+        message += `*Valor Total do Pedido:* R$ ${total.toFixed(2).replace(".", ",")}\n`;
+        message += `-----------------------------------\n\n`;
+        message += `Por favor, me informe as opções de personalização e dados para entrega!`;
+
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`;
+
+        window.open(whatsappUrl, "_blank");
       });
     </script>
   </body>
