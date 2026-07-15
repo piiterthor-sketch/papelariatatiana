@@ -179,6 +179,14 @@
         overflow: hidden;
         border-radius: 28px;
         position: relative;
+        background: white;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+        transition: 0.4s ease;
+      }
+
+      .gallery-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(228, 31, 38, 0.1);
       }
 
       .gallery-item img {
@@ -186,31 +194,7 @@
       }
 
       .gallery-item:hover img {
-        transform: scale(1.08);
-      }
-
-      .gallery-item::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.45), transparent);
-        opacity: 0;
-        transition: 0.5s;
-        z-index: 1;
-      }
-
-      .gallery-item:hover::before {
-        opacity: 1;
-      }
-
-      /* Swiper */
-
-      .swiper {
-        padding-bottom: 60px !important;
-      }
-
-      .swiper-pagination-bullet-active {
-        background: var(--red) !important;
+        transform: scale(1.05);
       }
 
       /* Mobile */
@@ -255,7 +239,7 @@
             </a>
 
             <a href="#galeria" class="hover:text-[#e41f26] transition">
-              Galeria
+              Produtos
             </a>
 
             <a href="#contato" class="hover:text-[#e41f26] transition">
@@ -273,7 +257,7 @@
             <a href="#home">Início</a>
             <a href="#sobre">Sobre</a>
             <a href="#categorias">Categorias</a>
-            <a href="#galeria">Galeria</a>
+            <a href="#galeria">Produtos</a>
             <a href="#contato">Contato</a>
           </div>
         </div>
@@ -466,46 +450,466 @@
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="gallery-item">
+          <!-- Produto 1 -->
+          <div class="gallery-item flex flex-col">
             <img
-              src="images/papel1.jpg"
-              class="w-full h-[350px] object-cover"
+              src="images/caderno-inteligente.jpg"
+              alt="Caderno Inteligente Criativo"
+              class="w-full h-[320px] object-cover"
             />
+            <div class="p-5 text-center bg-white border-t border-gray-100">
+              <h3 class="font-bold text-lg text-[#111111]">
+                Caderno Inteligente Criativo
+              </h3>
+            </div>
           </div>
 
-          <div class="gallery-item">
+          <!-- Produto 2 -->
+          <div class="gallery-item flex flex-col">
             <img
-              src="images/papel2.jpg"
-              class="w-full h-[350px] object-cover"
+              src="images/planner-anual.jpg"
+              alt="Planner Anual Personalizado"
+              class="w-full h-[320px] object-cover"
             />
+            <div class="p-5 text-center bg-white border-t border-gray-100">
+              <h3 class="font-bold text-lg text-[#111111]">
+                Planner Anual Personalizado
+              </h3>
+            </div>
           </div>
 
-          <div class="gallery-item">
+          <!-- Produto 3 -->
+          <div class="gallery-item flex flex-col">
             <img
-              src="images/papel3.jpg"
-              class="w-full h-[350px] object-cover"
+              src="images/estojo-premium.jpg"
+              alt="Estojo Premium Holográfico"
+              class="w-full h-[320px] object-cover"
             />
+            <div class="p-5 text-center bg-white border-t border-gray-100">
+              <h3 class="font-bold text-lg text-[#111111]">
+                Estojo Premium Holográfico
+              </h3>
+            </div>
           </div>
 
-          <div class="gallery-item">
+          <!-- Produto 4 -->
+          <div class="gallery-item flex flex-col">
             <img
-              src="images/papel4.jpg"
-              class="w-full h-[350px] object-cover"
+              src="images/canetas-gel.jpg"
+              alt="Kit Canetas em Gel Fineliner"
+              class="w-full h-[320px] object-cover"
             />
+            <div class="p-5 text-center bg-white border-t border-gray-100">
+              <h3 class="font-bold text-lg text-[#111111]">
+                Kit Canetas Gel Fineliner
+              </h3>
+            </div>
           </div>
 
-          <div class="gallery-item">
+          <!-- Produto 5 -->
+          <div class="gallery-item flex flex-col">
             <img
-              src="images/papel5.jpg"
-              class="w-full h-[350px] object-cover"
+              src="images/agenda-luxo.jpg"
+              alt="Agenda Planner de Luxo"
+              class="w-full h-[320px] object-cover"
             />
+            <div class="p-5 text-center bg-white border-t border-gray-100">
+              <h3 class="font-bold text-lg text-[#111111]">
+                Agenda Planner de Luxo
+              </h3>
+            </div>
           </div>
 
-          <div class="gallery-item">
+          <!-- Produto 6 -->
+          <div class="gallery-item flex flex-col">
             <img
-              src="images/papel6.jpg"
-              class="w-full h-[350px] object-cover"
+              src="images/marca-texto.jpg"
+              alt="Marca Texto Tons Pastel"
+              class="w-full h-[320px] object-cover"
             />
+            <div class="p-5 text-center bg-white border-t border-gray-100">
+              <h3 class="font-bold text-lg text-[#111111]">
+                Marca Texto Tons Pastel
+              </h3>
+            </div>
+          </div>
+
+          <!-- Produto 7 -->
+          <div class="gallery-item flex flex-col">
+            <img
+              src="images/bloco-notas.jpg"
+              alt="Bloco de Notas Autocolantes Cuted"
+              class="w-full h-[320px] object-cover"
+            />
+            <div class="p-5 text-center bg-white border-t border-gray-100">
+              <h3 class="font-bold text-lg text-[#111111]">
+                Bloco de Notas Autocolantes
+              </h3>
+            </div>
+          </div>
+
+          <!-- Produto 8 -->
+          <div class="gallery-item flex flex-col">
+            <img
+              src="images/lapiseira-tecnica.jpg"
+              alt="Lapiseira Técnica Premium"
+              class="w-full h-[320px] object-cover"
+            />
+            <div class="p-5 text-center bg-white border-t border-gray-100">
+              <h3 class="font-bold text-lg text-[#111111]">
+                Lapiseira Técnica Premium
+              </h3>
+            </div>
+          </div>
+
+          <!-- Produto 9 -->
+          <div class="gallery-item flex flex-col">
+            <img
+              src="images/lapis-cor.jpg"
+              alt="Estojo Lápis de Cor Aquarelável"
+              class="w-full h-[320px] object-cover"
+            />
+            <div class="p-5 text-center bg-white border-t border-gray-100">
+              <h3 class="font-bold text-lg text-[#111111]">
+                Lápis de Cor Aquarelável
+              </h3>
+            </div>
+          </div>
+
+          <!-- Produto 10 -->
+          <div class="gallery-item flex flex-col">
+            <img
+              src="images/caderno-sketchbook.jpg"
+              alt="Sketchbook para Desenho"
+              class="w-full h-[320px] object-cover"
+            />
+            <div class="p-5 text-center bg-white border-t border-gray-100">
+              <h3 class="font-bold text-lg text-[#111111]">
+                Sketchbook para Desenho
+              </h3>
+            </div>
+          </div>
+
+          <!-- Produto 11 -->
+          <div class="gallery-item flex flex-col">
+            <img
+              src="images/fita-washi.jpg"
+              alt="Kit Washi Tapes Decorativas"
+              class="w-full h-[320px] object-cover"
+            />
+            <div class="p-5 text-center bg-white border-t border-gray-100">
+              <h3 class="font-bold text-lg text-[#111111]">
+                Kit Washi Tapes Decorativas
+              </h3>
+            </div>
+          </div>
+
+          <!-- Produto 12 -->
+          <div class="gallery-item flex flex-col">
+            <img
+              src="images/organizador-mesa.jpg"
+              alt="Organizador de Mesa Acrílico"
+              class="w-full h-[320px] object-cover"
+            />
+            <div class="p-5 text-center bg-white border-t border-gray-100">
+              <h3 class="font-bold text-lg text-[#111111]">
+                Organizador de Mesa Acrílico
+              </h3>
+            </div>
+          </div>
+
+          <!-- Produto 13 -->
+          <div class="gallery-item flex flex-col">
+            <img
+              src="images/tesoura-criativa.jpg"
+              alt="Tesoura Escolar Criativa Pastel"
+              class="w-full h-[320px] object-cover"
+            />
+            <div class="p-5 text-center bg-white border-t border-gray-100">
+              <h3 class="font-bold text-lg text-[#111111]">
+                Tesoura Criativa Pastel
+              </h3>
+            </div>
+          </div>
+
+          <!-- Produto 14 -->
+          <div class="gallery-item flex flex-col">
+            <img
+              src="images/corretivo-fita.jpg"
+              alt="Corretivo em Fita Ergonômico"
+              class="w-full h-[320px] object-cover"
+            />
+            <div class="p-5 text-center bg-white border-t border-gray-100">
+              <h3 class="font-bold text-lg text-[#111111]">
+                Corretivo em Fita Ergonômico
+              </h3>
+            </div>
+          </div>
+
+          <!-- Produto 15 -->
+          <div class="gallery-item flex flex-col">
+            <img
+              src="images/grampeador-mini.jpg"
+              alt="Mini Grampeador com Extrator"
+              class="w-full h-[320px] object-cover"
+            />
+            <div class="p-5 text-center bg-white border-t border-gray-100">
+              <h3 class="font-bold text-lg text-[#111111]">
+                Mini Grampeador Candy Color
+              </h3>
+            </div>
+          </div>
+
+          <!-- Produto 16 -->
+          <div class="gallery-item flex flex-col">
+            <img
+              src="images/caderno-quadriculado.jpg"
+              alt="Caderno Universitário Quadriculado"
+              class="w-full h-[320px] object-cover"
+            />
+            <div class="p-5 text-center bg-white border-t border-gray-100">
+              <h3 class="font-bold text-lg text-[#111111]">
+                Caderno Universitário
+              </h3>
+            </div>
+          </div>
+
+          <!-- Produto 17 -->
+          <div class="gallery-item flex flex-col">
+            <img
+              src="images/canetas-brush.jpg"
+              alt="Kit Canetas Brush Pen Dual"
+              class="w-full h-[320px] object-cover"
+            />
+            <div class="p-5 text-center bg-white border-t border-gray-100">
+              <h3 class="font-bold text-lg text-[#111111]">
+                Kit Canetas Brush Pen Dual
+              </h3>
+            </div>
+          </div>
+
+          <!-- Produto 18 -->
+          <div class="gallery-item flex flex-col">
+            <img
+              src="images/clips-decorados.jpg"
+              alt="Clips de Papel Decorados Rose Gold"
+              class="w-full h-[320px] object-cover"
+            />
+            <div class="p-5 text-center bg-white border-t border-gray-100">
+              <h3 class="font-bold text-lg text-[#111111]">
+                Clips de Papel Rose Gold
+              </h3>
+            </div>
+          </div>
+
+          <!-- Produto 19 -->
+          <div class="gallery-item flex flex-col">
+            <img
+              src="images/fichario-universitario.jpg"
+              alt="Fichário Universitário com Alça"
+              class="w-full h-[320px] object-cover"
+            />
+            <div class="p-5 text-center bg-white border-t border-gray-100">
+              <h3 class="font-bold text-lg text-[#111111]">
+                Fichário Universitário Premium
+              </h3>
+            </div>
+          </div>
+
+          <!-- Produto 20 -->
+          <div class="gallery-item flex flex-col">
+            <img
+              src="images/borracha-neon.jpg"
+              alt="Borracha Neon Macia sem Sujeira"
+              class="w-full h-[320px] object-cover"
+            />
+            <div class="p-5 text-center bg-white border-t border-gray-100">
+              <h3 class="font-bold text-lg text-[#111111]">
+                Borracha Neon Macia
+              </h3>
+            </div>
+          </div>
+
+          <!-- Produto 21 -->
+          <div class="gallery-item flex flex-col">
+            <img
+              src="images/apontador-deposito.jpg"
+              alt="Apontador com Depósito Duplo"
+              class="w-full h-[320px] object-cover"
+            />
+            <div class="p-5 text-center bg-white border-t border-gray-100">
+              <h3 class="font-bold text-lg text-[#111111]">
+                Apontador com Depósito
+              </h3>
+            </div>
+          </div>
+
+          <!-- Produto 22 -->
+          <div class="gallery-item flex flex-col">
+            <img
+              src="images/bloco-weekly.jpg"
+              alt="Bloco Planner Semanal de Mesa"
+              class="w-full h-[320px] object-cover"
+            />
+            <div class="p-5 text-center bg-white border-t border-gray-100">
+              <h3 class="font-bold text-lg text-[#111111]">
+                Planner Semanal de Mesa
+              </h3>
+            </div>
+          </div>
+
+          <!-- Produto 23 -->
+          <div class="gallery-item flex flex-col">
+            <img
+              src="images/caderneta-pautada.jpg"
+              alt="Caderneta Pautada para Anotações"
+              class="w-full h-[320px] object-cover"
+            />
+            <div class="p-5 text-center bg-white border-t border-gray-100">
+              <h3 class="font-bold text-lg text-[#111111]">
+                Caderneta de Anotações
+              </h3>
+            </div>
+          </div>
+
+          <!-- Produto 24 -->
+          <div class="gallery-item flex flex-col">
+            <img
+              src="images/caneta-tinteiro.jpg"
+              alt="Caneta Tinteiro Clássica Criativa"
+              class="w-full h-[320px] object-cover"
+            />
+            <div class="p-5 text-center bg-white border-t border-gray-100">
+              <h3 class="font-bold text-lg text-[#111111]">
+                Caneta Tinteiro Fina
+              </h3>
+            </div>
+          </div>
+
+          <!-- Produto 25 -->
+          <div class="gallery-item flex flex-col">
+            <img
+              src="images/pasta-sanfonada.jpg"
+              alt="Pasta Sanfonada Organizadora Pastel"
+              class="w-full h-[320px] object-cover"
+            />
+            <div class="p-5 text-center bg-white border-t border-gray-100">
+              <h3 class="font-bold text-lg text-[#111111]">
+                Pasta Organizadora Pastel
+              </h3>
+            </div>
+          </div>
+
+          <!-- Produto 26 -->
+          <div class="gallery-item flex flex-col">
+            <img
+              src="images/calculadora-fofa.jpg"
+              alt="Calculadora Portátil Design Criativo"
+              class="w-full h-[320px] object-cover"
+            />
+            <div class="p-5 text-center bg-white border-t border-gray-100">
+              <h3 class="font-bold text-lg text-[#111111]">
+                Calculadora Design Criativo
+              </h3>
+            </div>
+          </div>
+
+          <!-- Produto 27 -->
+          <div class="gallery-item flex flex-col">
+            <img
+              src="images/regua-metal.jpg"
+              alt="Régua de Metal com Acabamento Luxo"
+              class="w-full h-[320px] object-cover"
+            />
+            <div class="p-5 text-center bg-white border-t border-gray-100">
+              <h3 class="font-bold text-lg text-[#111111]">
+                Régua Metálica Premium
+              </h3>
+            </div>
+          </div>
+
+          <!-- Produto 28 -->
+          <div class="gallery-item flex flex-col">
+            <img
+              src="images/perfurador-papel.jpg"
+              alt="Perfurador de Papel Artesanal"
+              class="w-full h-[320px] object-cover"
+            />
+            <div class="p-5 text-center bg-white border-t border-gray-100">
+              <h3 class="font-bold text-lg text-[#111111]">
+                Perfurador Artesanal
+              </h3>
+            </div>
+          </div>
+
+          <!-- Produto 29 -->
+          <div class="gallery-item flex flex-col">
+            <img
+              src="images/carimbo-personalizado.jpg"
+              alt="Kit Carimbos Divertidos Decorativos"
+              class="w-full h-[320px] object-cover"
+            />
+            <div class="p-5 text-center bg-white border-t border-gray-100">
+              <h3 class="font-bold text-lg text-[#111111]">
+                Kit Carimbos Divertidos
+              </h3>
+            </div>
+          </div>
+
+          <!-- Produto 30 -->
+          <div class="gallery-item flex flex-col">
+            <img
+              src="images/tintas-guache.jpg"
+              alt="Estojo Tintas Guache Metálicas"
+              class="w-full h-[320px] object-cover"
+            />
+            <div class="p-5 text-center bg-white border-t border-gray-100">
+              <h3 class="font-bold text-lg text-[#111111]">
+                Guache Cores Metálicas
+              </h3>
+            </div>
+          </div>
+
+          <!-- Produto 31 -->
+          <div class="gallery-item flex flex-col">
+            <img
+              src="images/lapis-infinito.jpg"
+              alt="Lápis Infinito Ecológico com Borracha"
+              class="w-full h-[320px] object-cover"
+            />
+            <div class="p-5 text-center bg-white border-t border-gray-100">
+              <h3 class="font-bold text-lg text-[#111111]">
+                Lápis Infinito Tecnológico
+              </h3>
+            </div>
+          </div>
+
+          <!-- Produto 32 -->
+          <div class="gallery-item flex flex-col">
+            <img
+              src="images/porta-lapis.jpg"
+              alt="Porta Lápis Giratório Multifuncional"
+              class="w-full h-[320px] object-cover"
+            />
+            <div class="p-5 text-center bg-white border-t border-gray-100">
+              <h3 class="font-bold text-lg text-[#111111]">
+                Porta Lápis Giratório
+              </h3>
+            </div>
+          </div>
+
+          <!-- Produto 33 -->
+          <div class="gallery-item flex flex-col">
+            <img
+              src="images/bloco-grid.jpg"
+              alt="Bloco Refil para Fichário Dot Grid"
+              class="w-full h-[320px] object-cover"
+            />
+            <div class="p-5 text-center bg-white border-t border-gray-100">
+              <h3 class="font-bold text-lg text-[#111111]">
+                Refil Fichário Dot Grid
+              </h3>
+            </div>
           </div>
         </div>
       </div>
